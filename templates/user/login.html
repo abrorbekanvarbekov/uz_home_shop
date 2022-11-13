@@ -1,0 +1,117 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+<body style="background: #FAFAFA">
+    <div style="display: flex; flex-direction:column; align-items: center;padding-top: 50px;">
+        <div style="display: flex;flex-direction:column; width:500px;margin-top: 10px;">
+            <div class="mb-3" style="width: 100%;display: flex; flex-direction:row;">
+                <div style="display: flex; border: solid 1px gray;width:50px; justify-content:center;align-items: center;">
+                    <span class="material-symbols-outlined">mail</span>
+                </div>
+                <div style="display: flex; width: 460px; height:50px">
+                    <input style="box-shadow: none;" id="input-email" class="form-control me-2" type="search" placeholder="Email"
+                    aria-label="Search">
+                </div>
+            </div>
+            <div class="mb-3" style="width: 100%;display: flex; flex-direction:row">
+                <div style="display: flex; border: solid 1px gray;width:50px; justify-content:center;align-items: center;">
+                    <span class="material-symbols-outlined">lock</span>
+                </div>
+                <div style="display: flex; width: 460px; height:50px">
+                    <input id="input-password" onkeyup="enterkey()"  style="box-shadow: none; outline: none;width: 400px;" type="password" class="form-control" placeholder="비밀번호">
+                    <span id="eye-button" style="display:flex;justify-content:center;align-items:center;border: solid 1px gray; width:50px;cursor: pointer;" class="material-symbols-outlined">
+                        visibility
+                    </span>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction:row; justify-content:space-between; padding-top: 5px;padding-bottom: 5px;">
+                <div>
+                <a style="text-decoration: none;color: black;" href="{% url 'find_id' %}">아이디 찾기</a>
+                </div>
+                <div>
+                    <a style="text-decoration: none;color: black;" href="{% url 'find_pw' %}">비밀번호 찾기</a>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto" style="width:100%; height: 50px;display: flex; flex-direction:row;box-shadow: none; outline: none;margin-bottom: 20px;">
+                <button style="box-shadow: none; outline: none;" id="join-button" class="btn btn-primary" type="button">로고인</button>
+            </div>
+            <div class="d-grid gap-2 mx-auto" style="width: 100%;height: 50px;display: flex; flex-direction:row;box-shadow: none; outline: none">
+                <button style="background-color: rgb(250, 250, 250);box-shadow: none; outline: none;" id="join-button" class="btn btn-primary" type="button">
+                    <a style="color:black; font-weight: bolder;text-decoration: none;" href="/user/join">회원가입</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+<script>
+    $('#eye-button').click(function () {
+        const password = document.querySelector('#input-password');
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+    })
+
+    function enterkey() {
+        if (window.event.keyCode == 13) {
+            // alert($('#input-email').val())
+            let email = $('#input-email').val();
+            alert(email)
+            let password = $('#input-password').val();
+
+            // console.log(email, password);
+            $.ajax({
+                url: "/user/login/",
+                data: {
+                    email: email,
+                    password: password,
+                },
+                method: "POST",
+                success: function (data) {
+                    console.log("성공");
+                    alert("로고인 성공했습니다");
+                    location.replace('/main');
+                },
+                error: function (request, status, error) {
+                    alert("회원 정보가 잘못되었습니다")
+                    console.log("에러");
+                },
+                complete: function () {
+                    console.log("완료");
+                }
+            });
+        }
+    };
+
+
+    $('#join-button').click(function () {
+        // alert($('#input-email').val())
+        let email = $('#input-email').val();
+        let password = $('#input-password').val();
+
+        // console.log(email, password);
+        $.ajax({
+            url: "/user/login/",
+            data: {
+                email: email,
+                password: password,
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                alert("로고인 성공했습니다");
+                location.replace('/main');
+            },
+            error: function (request, status, error) {
+                alert("회원 정보가 잘못되었습니다")
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+    });
+</script>
+{% endblock content %}   

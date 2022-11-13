@@ -1,0 +1,697 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google icon -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined|" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- link -->
+    <!-- <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'reset.css' %}"> -->
+    <title>HOME</title>
+<style>
+    header{
+        width: 1515px;
+        height: 150px;
+    }
+    .header-box {
+        display: block;
+        width: 100%;
+        height: 150px;
+        flex-direction: column;
+        margin-bottom: 10px;
+        z-index: 99999;
+        position: fixed;
+        background-color:white;
+    }
+    .login-container {
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-end;
+        height: 50px;
+        width: 100%;
+        align-items: center;
+        z-index: 2;
+        padding-right: 20px;
+    }
+
+    .search-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 60px;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+    }
+    .search-container1 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 70px;
+        align-items: center;
+        justify-content: center;
+    }
+    .category {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 43px;
+        cursor: pointer;
+        position: absolute;
+        padding-right: 200px;
+        z-index: 4;
+        border-bottom: 3px inset;
+    }
+
+    .category div a {
+        text-decoration:none;
+        color: black;
+        font-weight: 800;
+    }
+    .category div a:hover{
+        text-decoration:underline;
+    }
+    .join-bnt {
+        color: black;
+        text-decoration: none;
+        padding-left: 10px;
+    }
+    .category1 {
+        display: flex;
+        flex-direction: row;
+        justify-content:left;
+        align-items: center;
+        width: 1515px;
+        height: 50px;
+        cursor: pointer;
+        z-index: 5555;
+    }
+    .scroll-nev-bar {
+        display: none;
+        background-color: white;
+        width: 1515px;
+        flex-direction: row;
+        justify-content: space-between;
+        position: fixed;
+        margin-bottom: 20px;
+        z-index: 888;
+        top: 0;
+    }
+    .category1 div a {
+        text-decoration:none;
+        color: black;
+        font-weight: 800;
+        margin-right: 70px;
+    }
+    .category1 div a:hover{
+        text-decoration:underline;
+    }
+    .join-bnt1 {
+        color: black;
+        text-decoration: none;
+        padding-left: 10px;
+    }
+    .dropdown-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 350px;
+        padding-top: 15px;
+    }
+    .dropdown-container1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+    .dropbtn {
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        margin-left: 200px;
+    }
+    #dropdown1-content {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 300px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        margin-left: 300px;
+        border: 1px solid blueviolet;
+        overflow: scroll;
+        height: 550px;
+        width: 300px;
+    }
+    .dropdown1-content {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        margin-left: 300px;
+        border-radius: 20px;
+        border: 1px solid blueviolet;
+    }
+    .dropdown-content {
+        display: none;
+        border: 1px solid black;
+        flex-direction: column;
+        position: absolute;
+        background-color:white;
+        min-width: 300px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        overflow: scroll;
+        height: 550px;
+        width: 300px;
+    }
+
+    .dropdown-content a {
+        /* background-color: white; */
+        width: 300px;
+        border-radius: 20px;
+        border: 1px silver black;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        z-index: 5;
+    }
+    #dropdown1-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        z-index: 5;
+    }
+    /* .dropdown-content a:hover {
+        background-color: bisque;
+    } */
+
+    /* #dropdown1-content a:hover {
+        background-color: bisque;
+    } */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .dropdown:hover .dropbtn {
+        background-color: none;
+    }
+    .join-bnt:hover .dropdown-content {
+        display: block;
+    }
+    .dropbtnn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+{% block style %}
+{% endblock style %}
+    <!-- 로고인 시작 -->
+<header>
+<div class="header-box">
+    <div class="login-container">
+        {% if user.is_authenticated %}
+        <div>
+            <a class="join-bnt" href="/user/myprofile">{{user.name}}님</a>
+        </div>
+        {% else %}
+        <div>
+            <a class="join-bnt" href="/user/join">회원가입</a>
+        </div>
+        <span class="material-symbols-outlined">more_vert</span>
+        <div>
+            <a class="join-bnt" href="/user/login">로고인</a>
+        </div>
+        {% endif %}
+        <span class="material-symbols-outlined">more_vert</span>
+        <div>
+            <a class="nav-link dropdown-toggle join-bnt" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                고객센터
+            </a>
+            <ul class="dropdown-menu" style="right:-100px" aria-labelledby="navbarDropdown">
+                {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'my_profile' %}">내 프로필</a></li>
+                <li><a class="dropdown-item" href="#">공지사항</a></li>
+                <li><a class="dropdown-item" href="#">자주하는 질문</a></li>
+                <li><a class="dropdown-item" href="#">1:1 문의</a></li>
+                <li><a class="dropdown-item" href="#">대량주문 문의</a></li>
+                <li><a class="dropdown-item photo" href="{% url 'product_add'%}">상품 추가하기</a></li>
+                <hr>
+                <li><a class="dropdown-item" href="{% url 'user_logout' %}">로그 아웃</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="#">공지사항</a></li>
+                <li><a class="dropdown-item" href="#">자주하는 질문</a></li>
+                <li><a class="dropdown-item" href="#">1:1 문의</a></li>
+                <li><a class="dropdown-item" href="#">대량주문 문의</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <!-- 로고인 끝 -->
+    <!-- 감색장 시작 -->
+    <div class="search-container">
+        <div>
+            <a href="{% url 'main' %}"><img style="width: 143px;"
+                    src="https://kmug.co.kr/data/editor/1912/1930779469_1575700205.361.jpg" alt=""></a>
+        </div>
+        <div>
+            <a href="#" style="text-decoration: none;color:rgb(29, 3, 46);font-size:17px;font-weight: bolder;">마켓컬러</a>
+        </div>
+        <span class="material-symbols-outlined">more_vert</span>
+        <div style="margin-right: 50px;">
+            <a href="#" style="text-decoration: none;color:gray;font-size:15px">뷰티컬러</a>
+        </div>
+        <div style="width: 450px;height: 50px; border-color: blueviolet;">
+            <form class="d-flex" action="{% url 'search' %}">
+                <input style="box-shadow: none;" name="q" id="search" class="form-control me-2" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button id="search_button" type="submit" style="border:0mm;background-color: rgb(255, 255, 255); height: 50px;position: relative;"><span
+                     style="font-size: 30px;"   class="material-symbols-outlined">search</span></button>
+            </form>
+        </div>
+        <div style="margin-left:100px; cursor: pointer;">
+            <span style="font-size: 30px;" class="material-symbols-outlined">favorite</span>
+        </div>
+        <div style="margin-left:30px; cursor: pointer;">
+            <span id="adress" style="font-size: 30px;" class="material-symbols-outlined">location_on</span>
+        </div>
+        <div style="margin-left:30px;cursor: pointer;">
+            <a style="color:black" href="{% url 'cart:cart_detail' %}"><span style="font-size: 30px;" class="material-symbols-outlined">shopping_cart</span></a>
+        </div>
+    </div>
+    <!-- 검색 끝 -->
+    <!-- 카테고리 시작 -->
+    <div class="category">
+        <div class="dropdown-container" >
+            <div class="dropdown" id="dropdown1">
+                <div style="display: flex; flex-direction:row;">
+                    <span class="material-symbols-outlined dropbtn">menu</span>
+                    <a class="join-bnt" href="/main/">카테고리</a>
+                </div>
+                <div class="dropdown-content" >
+                    <a  id="vegetable" href="">채소</a>
+                    <a  id="fruit" href="">과일</a>
+                    <a class="meat" id="meat" href="">고기.계란</a>
+                    <a class="sellod" id="sellod" href="">샐러드</a>
+                    <a class="oil_flour" id="oil_flour" href="">오일_밀가루_면</a>
+                    <a class="water" id="water" href="">생수.음료</a>
+                    <a class="snack" id="snack" href="">간식</a>
+                    <a class="bakery" id="bakery" href="">베이커리</a>
+                    <a class="health_food" id="" href="health_food">건강식품</a>
+                    <a class="household" id="household" href="">생활용품</a>
+                    <a class="kitchen_utensils" id="kitchen_utensils" href="">주방용품기</a>
+                    <a class="home_appliances" id="home_appliances" href="">가전제품</a>
+                    <a class="baby_product" id="baby_product" href="">베이비</a>
+                </div>
+                <div class="vegetable_content" id="dropdown1-content" >
+                    <a class="vegetable_category" href="">고구마.감자.당근</a>
+                    <a class="vegetable_category" href="">양파_대파_마늘_배추</a>
+                    <a class="vegetable_category" href="">오이_호박_고추</a>
+                    <a class="vegetable_category" href="">냉동.이식.간편채소</a>
+                    <a class="vegetable_category" href="">코나물.버섯</a>
+                </div>
+                <div class="fruit_content" id="dropdown1-content" >
+                    <a class="fruit_category" href="">제철과일</a>
+                    <a class="fruit_category" href="">국산과일</a>
+                    <a class="fruit_category" href="">수입과일</a>
+                    <a class="fruit_category" href="">간편과일</a>
+                    <a class="fruit_category" href="">냉동.건과일</a>
+                </div>
+                <div class="meat_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">국산 소고기</a>
+                    <a class="fruit_category" href="">수입산 소고기</a>
+                    <a class="fruit_category" href="">계란류</a>
+                    <a class="fruit_category" href="">닭.오리고기</a>
+                    <a class="fruit_category" href="">양고기</a>
+                </div>
+                <div class="sellod_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">샐러드.닭가슴살</a>
+                    <a class="fruit_category" href="">도시락.밥류</a>
+                    <a class="fruit_category" href="">파스타.면류</a>
+                    <a class="fruit_category" href="">떡볶이.튀김</a>
+                    <a class="fruit_category" href="">피자.핫도그.만두</a>
+                </div>
+                <div class="oil_flour_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">식초.소스.드레싱</a>
+                    <a class="fruit_category" href="">양념.액젓</a>
+                    <a class="fruit_category" href="">식용유.참기름.오일</a>
+                    <a class="fruit_category" href="">소금.설탕</a>
+                    <a class="fruit_category" href="">밀가루.가루</a>
+                </div>
+                <div class="water_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">생수.단수</a>
+                    <a class="fruit_category" href="">우유.두유.요거트</a>
+                    <a class="fruit_category" href="">음류.주스</a>
+                    <a class="fruit_category" href="">커피</a>
+                    <a class="fruit_category" href="">차</a>
+                </div>
+                <div class="snack_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">과자.스낵.쿠키</a>
+                    <a class="fruit_category" href="">초콜릿.캔디.잴리</a>
+                    <a class="fruit_category" href="">떡.한과</a>
+                    <a class="fruit_category" href="">아이스크림</a>
+                </div>
+                <div class="bakery_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">식빵.빵류</a>
+                    <a class="fruit_category" href="">잼.버터</a>
+                    <a class="fruit_category" href="">케이크.파이</a>
+                    <a class="fruit_category" href="">치즈</a>
+                    <a class="fruit_category" href="">올리브.피클</a>
+                </div>
+                <div class="health_food_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">식빵.빵류</a>
+                    <a class="fruit_category" href="">잼.버터</a>
+                    <a class="fruit_category" href="">케이크.파이</a>
+                    <a class="fruit_category" href="">치즈</a>
+                    <a class="fruit_category" href="">올리브.피클</a>
+                </div>
+                <div class="household_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">식빵.빵류</a>
+                    <a class="fruit_category" href="">잼.버터</a>
+                    <a class="fruit_category" href="">케이크.파이</a>
+                    <a class="fruit_category" href="">치즈</a>
+                    <a class="fruit_category" href="">올리브.피클</a>
+                </div>
+                <div class="kitchen_utensils_content" id="dropdown1-content">
+                    <a class="fruit_category" href="">식빵.빵류</a>
+                    <a class="fruit_category" href="">잼.버터</a>
+                    <a class="fruit_category" href="">케이크.파이</a>
+                    <a class="fruit_category" href="">치즈</a>
+                    <a class="fruit_category" href="">올리브.피클</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'new_product'%}">신상품</a>
+        </div>
+        <div>
+            <a href="{% url 'best' %}">베스트</a>
+        </div>
+        <div>
+            <a href="{% url 'thrifty_shopping' %}">알뜰쇼핑</a>
+        </div>
+        <div>
+            <a href="">특가/혜택</a>
+        </div>
+    </div>
+    <!-- 카태고리 끝 -->
+</div>
+</header>
+<!-- scrooll nev bar -->
+<div class="scroll-nev-bar">
+    <div class="category1">
+        <div class="dropdown-container1">
+            <div class="dropdown">
+                <div id="dropdown1" style="display: flex; flex-direction:row">
+                    <span class="material-symbols-outlined dropbtn">menu</span>
+                    <a class="join-bnt" href="/main/">카테고리</a>
+                </div>
+                <div class="dropdown-content">
+                    <a class="vegetables" href="">채소</a>
+                    <a class="fruit" href="">과일</a>
+                    <a class="meat" href="">고기</a>
+                </div>
+                <div class="vegetable_cat" id="dropdown1-content">
+                    <a class="vegetable_category" href="">고구마.감자.당간</a>
+                    <a class="vegetable_category" href="">양파_대파_마늘_배추</a>
+                    <a class="vegetable_category" href="">오이_호박_고추</a>
+                </div>
+                <div class="fruit_cat" id="dropdown1-content">
+                    <a class="fruit_category" href="">tropik_mevalar</a>
+                    <a class="fruit_category" href="">수박_멜론</a>
+                    <a class="fruit_category" href="">일반과일</a>
+                </div>
+                <div class="meat_cat" id="dropdown1-content">
+                    <a class="fruit_category" href="">tropik_mevalar</a>
+                    <a class="fruit_category" href="">수박_멜론</a>
+                    <a class="fruit_category" href="">일반과일</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'new_product'%}">신상품</a>
+        </div>
+        <div>
+            <a href="{% url 'best' %}">베스트</a>
+        </div>
+        <div>
+            <a href="{% url 'thrifty_shopping' %}">알뜰쇼핑</a>
+        </div>
+        <div>
+            <a href="">특가/혜택</a>
+        </div>
+        <div style="width: 300px;">
+            <form class="d-flex" action="{% url 'search' %}">
+                <input style="box-shadow: none;" name="q" id="search" class="form-control me-2" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button id="search_button" type="submit" style="border:0mm;background-color: rgb(255, 255, 255); height: 50px;position: relative;"><span
+                     style="font-size: 30px;"   class="material-symbols-outlined">search</span></button>
+            </form>
+        </div>
+        <div style="margin-left:30px; cursor: pointer;">
+            <span class="material-symbols-outlined">favorite</span>
+        </div>
+        <div style="margin-left:30px; cursor: pointer;">
+            <span id="address" class="material-symbols-outlined">location_on</span>
+        </div>
+        <div style="margin-left:30px;cursor: pointer;">
+            <a href="{% url 'cart:cart_detail' %}"><span class="material-symbols-outlined">shopping_cart</span></a>
+        </div>
+    </div>
+</div>
+<!-- scrooll nev bar -->
+<script>
+
+    $('#adress').click(function(){
+        new daum.Postcode({
+        oncomplete: function(data) {
+            let adress = data.roadAddress;
+            alert(adress)
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+    })
+
+    $('#address').click(function(){
+        new daum.Postcode({
+        oncomplete: function(data) {
+            let adress = data.roadAddress;
+            alert(adress)
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+    })
+
+
+    document.addEventListener('scroll', function() {
+    var currentScrollValue = document.documentElement.scrollTop;
+    // console.log('currentScrollValue is ' + currentScrollValue);
+    if(currentScrollValue >= 120){
+        $('.header-box').css({
+            display:'none'
+        });
+        $('.scroll-nev-bar').css({
+            display:'block'
+        })
+    }else{
+        $('.header-box').css({
+            display:'block'
+        });
+        $('.scroll-nev-bar').css({
+            display:'none'
+        })
+    }
+    });
+
+
+    let vegetable = document.getElementById("vegetable");
+    let fruit = document.getElementById("fruit");
+    let meat = document.getElementById("meat");
+    let sellod = document.getElementById("sellod");
+    let oil_flour = document.getElementById("oil_flour");
+    let water = document.getElementById("water");
+    let snack = document.getElementById("snack");
+    let bakery = document.getElementById("bakery");
+    let health_food = document.getElementById("health_food");
+    let household = document.getElementById("household");
+    let kitchen_utensils = document.getElementById("kitchen_utensils");
+    let home_appliances = document.getElementById("home_appliances");
+    let baby_product = document.getElementById("baby_product");
+    let mouseout = document.getElementById("dropdown1");
+
+
+    vegetable.addEventListener("mouseover", function (event) {
+        $('.vegetable_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.vegetable_content').hide()
+    }, false);
+
+
+    fruit.addEventListener("mouseover", function (event) {
+        $('.fruit_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.fruit_content').hide()
+    }, false);
+
+    meat.addEventListener("mouseover", function (event) {
+        $('.meat_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.meat_content').hide()
+    }, false);
+
+    sellod.addEventListener("mouseover", function (event) {
+        $('.sellod_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.sellod_content').hide()
+    }, false);
+
+    oil_flour.addEventListener("mouseover", function (event) {
+        $('.oil_flour_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.oil_flour_content').hide()
+    }, false);
+
+    water.addEventListener("mouseover", function (event) {
+        $('.water_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.water_content').hide()
+    }, false);
+
+    snack.addEventListener("mouseover", function (event) {
+        $('.snack_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.snack_content').hide()
+    }, false);
+
+    bakery.addEventListener("mouseover", function (event) {
+        $('.bakery_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.bakery_content').hide()
+    }, false);
+
+    health_food.addEventListener("mouseover", function (event) {
+        $('.health_food_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.health_food_content').hide()
+    }, false);
+
+    household.addEventListener("mouseover", function (event) {
+        $('.household_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.household_content').hide()
+    }, false);
+
+    kitchen_utensils.addEventListener("mouseover", function (event) {
+        $('.kitchen_utensils_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.kitchen_utensils_content').hide()
+    }, false);
+
+    home_appliances.addEventListener("mouseover", function (event) {
+        $('.home_appliances_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.home_appliances_content').hide()
+    }, false);
+
+    baby_product.addEventListener("mouseover", function (event) {
+        $('.baby_product_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.baby_product_content').hide()
+    }, false);
+
+
+</script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
+
+</body>
+{% block content %}
+{% endblock content %}
+</html>

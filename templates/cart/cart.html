@@ -1,0 +1,284 @@
+{% extends 'main/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block style %}
+<style>
+    .product_continer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 1519px;
+        height: 1500px;
+        background-color:white;
+        padding-top: 30px;
+        cursor: default;
+    }
+    .left_feed{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        width: 70%;
+        height: 100%;
+        background-color:white;
+    }
+    .pro_cont_in {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        height: 100%;
+        background-color:white;
+    }
+    .celect_del_button{
+        display: flex;
+        width: 800px;
+        height: 50px;
+        background-color:white;
+        align-items: center;
+        border-bottom: 2px solid;
+    }
+    .del_button{
+        border: none;
+        background-color:white;
+    }
+    .product_list{
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        height: 180px;
+        background-color:white;
+    }
+    .product_box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 50px;
+        height: 180px;
+        border-bottom: 2px solid;
+    }
+    .product_img{
+        display: block;
+        width: 80px;
+        height: 100px;
+    }
+    .right_feed{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        width: 263px;
+        height: 500px;
+        margin-top: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        /* background-color:rgb(182, 135, 63) ; */
+    }
+    .sum_price_feed{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .sum_price_feed_top{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        align-items: flex-start;
+    }
+    .sum_price_feed_top input {
+        padding-top: 10px;
+        font-size: 17px;
+        font-weight: bolder;
+        opacity: 0.7;
+        border: none;
+        background-color: white;
+    }
+    .sum_price_feed_bottom{
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        align-items: flex-start;
+    }
+    .sum_price_feed_bottom input {
+        padding-top: 10px;
+        font-size: 17px;
+        font-weight: bolder;
+        border: none;
+        background-color: white;
+    }
+    .order_button{
+        width: 100%;
+        padding-top: 20px;
+    }
+    .order_button button{
+        color: #f1f1f1;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(105, 36, 169);
+    }
+    input[type= "checkbox"]{
+        font-size: 20px;
+        text-decoration: none;
+    }
+    input[type="button"]{
+        font-size: 20px;
+        /* border: none; */
+        background-color: white;
+    }
+    #total_amount_sell_price{
+        /* padding-left: 80px; */
+        background-color: white;
+        border: none;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+{% if not cart_items %}
+<div style="display: flex; align-items: center;justify-content: center;padding-top: 50px;"><h1>장바구니 비어 있습니다!</h1></div>
+{% else %}
+<div class="product_continer">
+    <div><h3 style="font-weight: bolder; padding-top: 30px;">장바구니</h3></div>
+    <div class="left_feed">
+        <div class="pro_cont_in">
+            <div class="celect_del_button">
+                <div class="form-check all_check_button">
+                    <input class="form-check-input" type="checkbox" value="" id="all_check_button">
+                </div>
+                <label >전체선택</label>
+                <span class="material-symbols-outlined">more_vert</span>
+                <button class="del_button" type="button">선택 삭제</button>
+            </div>
+            {% for cart_item in cart_items %}
+            <div class="product_list">
+                <div class="product_box">
+                    <div class="form-check check_button">
+                        <input class="form-check-input" type="checkbox" value="" id="check_button">
+                    </div>
+                    <img class="product_img" src="{% get_media_prefix %}{{cart_item.product.product_image }}" alt="">
+                    <div style="padding-left: 20px; font-size: 14px;width: 350px;">{{cart_item.product.name}}</div>
+                    <div style="padding-left: 30px; width: 250px;">
+                        <div>
+                            <input feed_id="{{cart_item.product.id}}" class="product_remove" id="minus_{{cart_item.product.id}}" type="button" value="-" size="3">
+                            <input feed_id="{{cart_item.product.id}}"  type="button" id="quantity_{{cart_item.product.id}}" name="p_num1" class="p_num1" autocomplete="off" value="{{cart_item.quantity}}">
+                            <input feed_id="{{cart_item.product.id}}"  class="product_add" id="plus_{{cart_item.product.id}}" type="button" value="+" size="3">
+                        </div>
+                    </div>
+                    <input class="total_amount" type="submit" id="total_amount_sell_price" name="sum" value="{{cart_item.sub_total|intcomma}}">원
+                    <a href="{% url 'cart:cart_delite' cart_item.product.id %}"><button class="del_button"><span style="padding-left: 20px;font-size: 20px;" class="material-symbols-outlined">close</span></button></a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="celect_del_button">
+                <div class="form-check all_check_button">
+                    <input class="form-check-input" type="checkbox" value="" id="all_check_button_bottom">
+                </div>
+                <label >전체선택</label>
+                <span class="material-symbols-outlined">more_vert</span>
+                <button class="del_button" type="button">선택 삭제</button>
+            </div>
+        </div>
+        <div class="right_feed">
+            <div style="display: flex; flex-direction:column;justify-content:flex-start; align-items:flex-start; ">
+                <div>
+                    @배송지
+                </div>
+                <div style="display: flex; justify-content:center; align-items: center;">
+                    <span class="material-symbols-outlined">location_on</span>
+                    {{user.address}}
+                </div>
+            </div>
+            <div class="sum_price_feed">
+                <div class="sum_price_feed_top">
+                    <input type="submit"  value="상품 금액">
+                    <input type="submit" value="상품 할인 금액">
+                    <input type="submit" value="배송비">
+                    <hr>
+                    <input type="submit" value="결제 예정금액">
+                </div>
+                <div class="sum_price_feed_bottom">
+                    <div style="font-weight:bolder; font-size:medium">
+                        <input class="sell_price" type="submit" id="sum_amount" name="sell_price" value="{{total|intcomma}}">원
+                    </div>
+                    <div style="font-weight:bolder; font-size:medium">
+                        <input type="submit" value="0">원
+                    </div>
+                    <div style="font-weight:bolder; font-size:medium">
+                        +<input type="submit" value="{{delivery_fee}}">원
+                    </div>
+                    <hr>
+                    <div>
+                        <input id="payment_price" type="submit" value="{{pay_price|intcomma}}">원
+                    </div>
+                </div>
+            </div>
+            <div class="order_button">
+                <button>주문하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script>
+    let all_check_button = document.getElementsByClassName('all_check_button')
+    // console.log(,all_check_button)
+    let check_button = document.getElementsByClassName('check_button')
+
+    const $container = document.querySelector('.check_button');
+    const $inputs = [...$container.children];
+    const $agreeBtn = document.querySelector('.all_check_button');
+
+    $agreeBtn.onclick = () => {
+        if ($inputs.filter(input => input.checked).length === $inputs.length) {
+            $inputs.forEach(input => { input.checked = false; });
+        } else {
+            $inputs.forEach(input => {
+                input.checked = true;
+            });
+        }
+    };
+
+    $('.product_remove').click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem("feed_id").value
+        $.ajax({
+            url: "/cart/minus/",
+            data: {
+                feed_id: feed_id
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                location.reload()
+            },
+            error: function (request, status, error,) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+    });
+
+
+    $('.product_add').click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value
+        $.ajax({
+            url: "/cart/plus/",
+            data: {
+                feed_id: feed_id
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                location.reload()
+            },
+            error: function (request, status, error,) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+    });
+</script>
+{% endblock content %}

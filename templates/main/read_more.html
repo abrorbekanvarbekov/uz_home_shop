@@ -1,0 +1,348 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block style %}
+<style>
+    .product_continer{
+        display: flex;
+        justify-content: center;
+        width: 1519px;
+        height: 1500px;
+        background-color:whitesmoke;
+        padding-top: 30px;
+        cursor: default;
+    }
+    .pro_cont_in {
+        display: flex;
+        flex-direction: row;
+        width: 70%;
+        height: 100%;
+        background-color:whitesmoke;
+    }
+    .product_img_cont{
+        display: block;
+        left: 48%;
+        width: 40%;
+        height: 550px;
+        background-color: whitesmoke;
+    }
+    .product_img_cont img {
+        height: 100%;
+        width: 100%;
+    }
+    .empty_cont {
+        display: flex;
+        width: 8%;
+        background-color: whitesmoke;
+    }
+    .product_price_cont{
+        display: block;
+        flex-direction: column;
+        right: 52%;
+        width: 52%;
+        height: 670px;
+        background-color: whitesmoke;
+    }
+    .product_name{
+        display: flex;
+        padding-top: 20px;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    .product_explanation{
+        font-weight: 100px;
+        padding-top: 10px;
+        font-size: small;
+        opacity: 70%;
+    }
+    .product_price{
+        display: flex;
+        flex-direction: row;
+        font-weight: bolder;
+        font-size: 30px;
+        padding-top: 10px;
+    }
+    .is_login h6{
+        font-size: 14px;
+        color:rgb(83, 7, 149);
+    }
+    .product_shipping{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 50px;
+    }
+    .product_seller{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 30px;
+    }
+    .product_notification{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 80px;
+    }
+    .left_box{
+        width: 200px;
+        padding-right: 50px;
+        font-size: 15px;
+    }
+    .right_boxs{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid;
+        width: 400px;
+        height: 80px;
+        /* border-width: 100px; */
+    }
+    .right_boxs div{
+        /* padding-top: px; */
+        font-size: small;
+    }
+    .prod_total_amount{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 670px;
+        padding-left:330px;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+    .prod_total_amount div{
+        padding-left: 10px;
+    }
+    .cart_button_continer{
+        display: flex;
+        flex-direction: row;
+        padding-top: 20px;
+    }
+    .favorite_box{
+        display:flex;
+        padding-right: 10px;
+        border: 1px dotted;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+    .notifications_box{
+        display:flex;
+        padding-right: 10px;
+        border: 1px dotted;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+    #total_amount_sell_price{
+        border:none; 
+        background-color:whitesmoke;
+        cursor: default;
+    }
+    .add_remove_amount{
+        width:120px; 
+        height: 40px ;
+        display: flex; 
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+{% for product in products%}
+<div class="product_continer">
+    <div class="pro_cont_in">
+        <div class="product_img_cont">
+            <img src="{% get_media_prefix %}{{ product.product_image }}" alt="상품 이미지">
+        </div>
+        <div class="empty_cont"></div>
+        <div class="product_price_cont">
+            <div class="product_name">
+                <div>{{product.name}}</div>
+            </div>
+            <div class="product_explanation">  
+                {{product.pro_manual}}
+            </div>
+            <div class="product_price">
+                {% load humanize %}
+                {% if product.pro_seil_prace %}
+                <span style="color: red;padding-right: 15px;">{{product.pro_seil_percent}}%</span>
+                <span>{{product.sell_price|intcomma}}원</span>
+                {% else %}
+                <span>{{product.sell_price|intcomma}}원</span>
+                {% endif %}
+            </div>
+            <span style="text-decoration:line-through;opacity:0.5;font-size:15px">{{ product.pro_seil_prace|intcomma }}원</span>
+            {% if user is None %}
+            <div class="is_login">
+                <h6>로고인후, 적닙 혜택이 제공됩니다</h6>
+            </div>
+            {% else %}
+
+            {% endif %}
+            <hr>
+            <div class="product_shipping">
+                <div class="left_box">
+                    배송
+                </div>
+                <div class="right_box">
+                    샛별배송
+                </div>
+            </div>
+            <hr>
+            <div class="product_seller">
+                <div class="left_box">
+                    판매자
+                </div>
+                <div class="right_box">
+                    HoMeShOpInG
+                </div>
+            </div>
+            <hr>
+            <div class="product_seller">
+                <div class="left_box">
+                    포장타입
+                </div>
+                <div class="right_box">
+                    냉장
+                </div>
+            </div>
+            <hr>
+            <div class="product_seller">
+                <div class="left_box">
+                    판매단위
+                </div>
+                <div class="right_box">
+                    1팩
+                </div>
+            </div>
+            <hr>
+            <div class="product_seller">
+                <div class="left_box">
+                    중량/용량
+                </div>
+                <div class="rigth_box">
+                    300g/500g
+                </div>
+            </div>
+            <hr>
+            <div class="product_seller">
+                <div class="left_box">
+                    원산지
+                </div>
+                <div>
+                    상세페이지 별도표기
+                </div>
+            </div>
+            <hr>
+            <div class="product_notification">
+                <div class="left_box">
+                    안내사항
+                </div>
+                <div class="rigth_box">
+                    -해당 상품은 냉장 상품입니다.<br>
+                    -상품 수령 후 최대한 빠른 실내에 섭취를 권장드립니다..
+                </div>
+            </div>
+            <hr>
+            <div class="product_notification">
+                <div class="left_box">
+                    구매수량
+                </div>
+                <div class="right_boxs">
+                    <div>
+                       종량/용량 
+                    </div>
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;padding-top: 10px;">
+                        <div class="add_remove_amount updown">
+                            <span class="material-symbols-outlined product_remove">remove</span>
+                            <input type="submit" name="p_num1" id="product_number" class="p_num1" autocomplete="off" value="1">
+                            <span class="material-symbols-outlined product_add">add</span>
+                        </div>
+                        <span style="text-decoration:line-through;opacity:0.5;font-size:15px;padding-left: 100px;">{{ product.pro_seil_prace|intcomma }}원</span>
+                        <div style="font-weight:bolder; font-size:medium">
+                            <input class="sell_price" type="submit" id="total_amount_sell_price" name="sell_price" value="{{product.sell_price|intcomma}}">원
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <hr>
+            <div class="prod_total_amount">
+                <h6>총 상품금액:</h6>
+                <input class="total_amount" type="submit" id="total_amount_sell_price" name="sum" value="{{product.sell_price|intcomma}}" readonly>원
+            </div>
+            <div class="cart_button_continer">
+                <div class="favorite_box">
+                    <span id="favorite" style="padding-left: 6px; font-size: 30px; color: red;" class="material-icons-outlined">favorite_border</span>
+                </div>
+                <div class="notifications_box">
+                    <span style="padding-left: 6px;font-size: 30px;color: rgb(97, 14, 176);" class="material-symbols-outlined">notifications</span>
+                </div>
+                <a href="{% url 'cart:add_cart' product.id %}"><button style="width: 455px; height: 50px;" id="cart_add_button" type="button" class="btn btn-success">장바구니에 담기</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#favorite").click(function(){
+        if($('#favorite').html() == "favorite_border"){
+            $('#favorite').html("favorite")
+        }else{
+            $('#favorite').html("favorite_border")
+        }
+    })
+    $('#cart_add_button').click(function () {
+        let quantity = $('#product_number').val()
+        $.ajax({
+            url: "{% url 'cart:add_cart' product.id %}",
+            data: {
+                quantity: quantity,
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error,) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+    })
+
+
+    $('.product_add').click(function () {
+        let number = $('#product_number').val()
+        let sell_price = "{{product.sell_price}}"
+        let n = 1
+        if (number >= 1) {
+            new_nam = parseInt(number) + n
+            sum_price = new_nam * sell_price
+            sum_price2 = sum_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $('.total_amount').val(sum_price2)
+            $('#product_number').val(new_nam)
+        }
+    });
+    
+    $('.product_remove').click(function () {
+        let number = $('#product_number').val()
+        let sell_price = "{{product.sell_price}}"
+        let n = 1
+        if (number > 1) {
+            new_nam = parseInt(number) - n
+            sum_price = new_nam * sell_price
+            sum_price = new_nam * sell_price
+            sum_price2 = sum_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $('.total_amount').val(sum_price2)
+            $('#product_number').val(new_nam)
+        }
+    });
+</script>
+{% endfor %}   
+{% endblock content %}

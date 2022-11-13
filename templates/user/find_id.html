@@ -1,0 +1,144 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+<body style="background:white">
+    <div style="display: flex; flex-direction:column; align-items: center;padding-top: 50px;">
+        <div style="display: flex;flex-direction:column; width:500px;margin-top: 10px;">
+            <div style="padding-left: 190px;cursor:default;"><h3>아이디 찾기</h3></div>
+            <div style="display: flex; flex-direction:row; padding-top: 10px;justify-content: space-between;">
+                <div style="display: flex;width: 250px; align-items: center;justify-content: center;">
+                    <a style="text-decoration: none;color: black;">
+                        <button id="phone_certificat" style="border: none;color:#6c09c9;background-color: white;font-weight: bolder;" type="button">휴대폰 인증</button>
+                        <hr id="hr1" style="display: flex ;height: 5px; color:black">
+                    </a>
+                </div>
+                <div style="display: flex;width: 250px; align-items: center;justify-content: center;">
+                    <a style="text-decoration: none;color: black;">
+                        <button id="email_certificat" style="border: none;color:black; background-color: white;font-weight: bolder;" type="button">이메일 인증</button>
+                        <hr id="hr2" style="display: flex; height: 5px; color:white">
+                    </a>
+                </div>
+            </div>
+            <div id="name" style="display:flex;flex-direction:column">
+                <div style="padding-bottom: 10px;cursor: default;">이름</div>
+            <div class="mb-3" style="width: 100%;display: flex; flex-direction:row;">
+                <div style="display: flex; border: solid 1px gray;width:50px; justify-content:center;align-items: center;">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+                <form style="display: flex; width: 460px; height:50px" action="" method="post">
+                        <input style="box-shadow: none;" name="name" id="input-name" class="form-control me-2" type="search" placeholder="이름을 입력해주세요"
+                    aria-label="Search">
+                </form>
+            </div>
+            </div>
+            <div id="phone_number" style="display:flex;flex-direction:column">
+                <div style="padding-bottom: 10px;cursor: default;">휴대폰 번호</div>
+            <div class="mb-3" style="width: 100%;display: flex; flex-direction:row;">
+                <div style="display: flex; border: solid 1px gray;width:50px; justify-content:center;align-items: center;">
+                    <span class="material-symbols-outlined">phone</span>
+                </div>
+                <form style="display: flex; width: 460px; height:50px" action="" method="post">
+                        <input style="box-shadow: none;" name="phone" id="input-phone" class="form-control me-2" type="search" placeholder="휴대폰 번호를 입력해주세요"
+                    aria-label="Search">
+                </form>
+            </div>
+            </div>
+            <div id="email" style="display:none;flex-direction:column">
+                <div style="padding-bottom: 10px;cursor: default;">이메일</div>
+            <div class="mb-3" style="width: 100%;display: flex; flex-direction:row;">
+                <div style="display: flex; border: solid 1px gray;width:50px; justify-content:center;align-items: center;">
+                    <span class="material-symbols-outlined">email</span>
+                </div>
+                <form style="display: flex; width: 460px; height:50px" action="" method="post">
+                        <input style="box-shadow: none;" name="phone" id="input-email" class="form-control me-2" type="search" placeholder="이메일을 입력해주세요"
+                    aria-label="Search">
+                </form>
+            </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto" style="width:100%; height: 50px;display: flex; flex-direction:row;box-shadow: none; outline: none;margin-bottom: 20px;">
+                <button style="box-shadow: none; outline: none;font-size: larger;" id="join-button" class="btn btn-primary" type="button">인증번호 받기</button>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+<script>
+    $('#phone_certificat').click(function () {
+        $('#email').css({
+            display: "none"
+        });
+        $('#hr1').css({
+            color: "black"
+        });
+        $('#hr2').css({
+            color: "white"
+        });
+        $('#phone_certificat').css({
+            color: "#6c09c9"
+        });
+        $('#phone_number').css({
+            display: "flex"
+        });
+        $('#email_certificat').css({
+            color: "black"
+        });
+    })
+
+
+    $('#email_certificat').click(function () {
+        $('#phone_number').css({
+            display: "none"
+        });
+        $('#hr2').css({
+            color: "black"
+        });
+        $('#hr1').css({
+            color: "white"
+        });
+        $('#email_certificat').css({
+            color: "#6c09c9"
+        });
+        $('#email').css({
+            display: "flex"
+        });
+        $('#phone_certificat').css({
+            color: "black"
+        });
+    });
+
+    $('#join-button').click(function () {
+        let name = $('#input-name').val()
+        let phone = $('#input-phone').val()
+        let email = $('#input-email').val()
+        let type
+        if (phone.length == 0) {
+            type = "email"
+        } else {
+            type = "phone"
+        };
+
+        $.ajax({
+            url: "{% url 'find_id' %}",
+            data: {
+                type: type,
+                name: name,
+                phone: phone,
+                email: email
+            },
+            method: "POST",
+            success: function (data) {
+                console.log('성공');
+            },
+            error: function (request, status, error) {
+                console.log('error');
+            },
+            complete: function () {
+                console.log('완료');
+            }
+        });
+    })
+</script>
+{% endblock content %}

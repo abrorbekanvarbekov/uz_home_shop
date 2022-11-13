@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- {% load static %} -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google icon -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined|" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <title>Product_add</title>
+    <style>
+        .continer-box {
+            display: flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .continer {
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+            height: 600px;
+            margin-top: 50px;
+            border: solid 2px;
+            align-items: center;
+            justify-content: center;
+        }
+        .continer input {
+            height: 40px;
+        }
+        button a{
+            text-decoration: none;
+            color: black;
+            font-size: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <form class="row g-3 needs-validation"  novalidate>
+        <button style="width: 200px;height: 50px; background-color:cyan;" type="submit"><a href="{% url 'main' %}">Home</a></button>
+        <div class="continer-box" >
+            <div class="continer">
+                <h2 style="color:crimson">상품 정보들 입력해주세요!</h2>
+                <div style="width: 500px;" class="input-group mb-3">
+                    <input type="file" class="form-control" onchange=image_upload() id="product_image" required >
+                </div>
+                <!-- <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="management_code" required placeholder="management_code">
+                </div> -->
+                <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="name" required placeholder="name">
+                </div>
+                <!-- <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="standard_price" required placeholder="standard_price">
+                </div>
+                <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="original_sell_price" required placeholder="original_sell_price">
+                </div> -->
+                <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="sell_price"  required placeholder="sell_price">
+                </div>
+                <!-- <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="original_cost"  required placeholder="original_cost">
+                </div> -->
+                <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="pro_seil_prace" required placeholder="pro_seil_prace">
+                </div>
+                <div style="width: 500px;" class="mb-3">
+                    <input type="text" class="form-control" id="pro_seil_percent"  required placeholder="pro_seil_percent">
+                </div>
+                <button style="width: 200px;" id="sand-button" type="submit" class="btn btn-success">Success</button>
+            </div>
+        </div>
+      </form>
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    $('#sand-button').click(function () {
+    
+    // function image_upload(){
+
+        let file = $('#product_image')[0].files[0]
+        // let management_code = $('#management_code').val();
+        let name = $('#name').val();
+        // let standard_price = $('#standard_price').val();
+        // let original_sell_price = $('#original_sell_price').val();
+        let sell_price = $('#sell_price').val();
+        // let original_cost = $('#original_cost').val();
+        let pro_seil_prace = $('#pro_seil_prace').val();
+        let pro_seil_percent = $('#pro_seil_percent').val();
+
+        let fd =  new FormData
+        fd.append("file",file)
+        // fd.append("management_code",management_code)
+        fd.append("name",name)
+        // fd.append("standard_price",standard_price)
+        // fd.append("original_sell_price",original_sell_price)
+        fd.append("sell_price",sell_price)
+        // fd.append("original_cost",original_cost)
+        fd.append("pro_seil_prace",pro_seil_prace)
+        fd.append("pro_seil_percent",pro_seil_percent)
+        $.ajax({
+            url: "/product/product_add/",
+            data:fd,
+            method: "POST",
+            processData: false,
+            contentType:false,
+            success: function (data) {
+                console.log("성공");
+                alert('입력 성공했습니다')
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        })}
+    )
+   
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* header{
+    background: linear-gradient(to bottom, #f6f5ef 120px, #2c2a29 120px );
+}
+
+<!-- <header>
+                <div >
+                    <ul class="mein_manu" >
+                        <li> <a href="">coffee</a>
+                            <div class="sob_menu">
+                                <dl>
+                                    <dt>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <a href="">에스프레소 음료</a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href="">모카</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mein_manu">
+                        <li> <a href="">menu1</a>
+                            <div class="sob_menu">
+                                <dl>
+                                    <dt>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <a href="">에스프레소 음료</a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href="">모카</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mein_manu">
+                        <li> <a href="">manu</a>
+                            <div class="sob_menu">
+                                <dl>
+                                    <dt>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                        <a href="">커피</a>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <a href="">에스프레소 음료</a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href=""></a>
+                                        <a href="">모카</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </header> --> */
+
+
+            /* <div class="slide-wrapper">
+            <ul class="slide-container">
+                <li class="slide1">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+                <li class="slide2">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+                <li class="slide3">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+                <li class="slide4">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+                <li class="slide5">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+                <li class="slide6">
+                    <div class="contents">
+                        <h2>Slide 1 title</h2>
+                        <a href="">Visit now</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="#" id="prev" class="controls"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" id="next" class="controls"><i class="fas fa-chevron-right"></i></a>
+            <p class="pager">
+                <a href="">0</a>
+                <a href="" class="active">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+            </p>
+        </div> */
+
+
+        .slide-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 600px;
+        }
+        .slide-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            transition: left .3s ease-in;
+            left: 0;
+        }
+        .slide-container > li {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            list-style: none;
+        }
+        .login-container>li .contents{
+            position: absolute;
+            top: 100%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .slide-container>li .contents>* {
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.2s 0.4s ease-in-out;
+        }
+        .login-container>li.active .contents>*{
+            color: #fff;
+            opacity: 1;
+        }
+        .slide-container>li .contents h2 {
+            text-shadow: 2px 2px 3px rgba(0,0,0, 0.2);
+            margin: 0;
+        }
+        .login-container>li .contents p{
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .slide-wrapper .controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999999;
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            transition: all  .3s ease-in;
+            background:rgba(255, 255, 255, .5);
+            text-align: center;
+            line-height: 5rem;
+            font-size: 20px;
+            color: #444;
+        }
+        #prev{
+            left: 20px;
+        }
+        #next{
+            right: 20px;
+        }
+        #prev.disabled,
+        #next.disabled{
+            display: none;
+        }
+        .slide-wrapper .controls:hover{
+            background: rgba(255, 255, 255, 1);
+        }
+        .pager{
+            position: absolute;
+            left: 0;
+            right: 0%;
+            bottom: 0;
+            text-align: center;
+        }
+        .pager a{
+            width: 10px;
+            height: 10px;
+            margin: 0px 10px;
+            border-radius: 50%;
+            background: #ccc;
+            text-indent: -9999em;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .pager a.active{
+            background: #000;
+        }

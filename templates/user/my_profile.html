@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google icon -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined|" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>MY_Profile</title>
+    <style>
+        h1 a {
+            text-decoration: none;
+            color: black;
+        }
+        .button {
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+            width: 100%;
+            height:50px;
+            text-align: start;
+            background-color: white;
+            font-size: 20px;
+            font-weight: 500px;
+            border: 0;
+            outline: 0;
+        }
+        .admin-div{
+            width:120px;
+            height:100px;
+            border: 5px solid;
+            margin-right: 50px;
+            padding: 30px;
+        }
+        .button-box {
+            display: flex;
+            border-bottom: 1px solid;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; width: 1535px; height:70px;background-color:rgb(74, 32, 108)">
+        <a href="{% url 'main' %}"><img style="width: 165px;padding-left: 20px;" src="https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/9ylf/image/VB_oFXU4UNOo51TjAQ7l0lwe-7U.png" alt=""></a>
+    </div>
+    <div style="display: flex; flex-direction:column; justify-content:center;">
+        <div style="display: flex; flex-direction:row;padding: 70px;align-items: center;">
+            {% if user.is_staff %}
+            <div class="admin-div">일반</div>
+            {% else %}
+            <div class="admin-div">아드민</div>
+            {% endif %}
+            {% for user in user %}
+            <h1 ><a href="">{{user.nickname}}</a></h1>
+            {% endfor %}
+        </div>
+        <div style="width: 1530px;height:100px"><img style="width: 100%;height:100%" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/8ab166f2-4271-4afb-9cb9-1aac94d72dc6.jpg" alt=""></div>
+        <table class="table">
+            <tbody>
+                <div class="button-box">
+                    <button class="button" id="주문내역"  type="submit">주문 내역</button>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+                <div class="button-box">
+                    <button class="button" id="주문내역"  type="submit">찜한 상품</button>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+                <div class="button-box">
+                    <button class="button" id="주문내역"  type="submit">상품 후기</button>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+                <div class="button-box">
+                    <button class="button" id="주문내역"  type="submit">배송지 관리</button>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+                <div class="button-box">
+                    <button class="button" id="주문내역"  type="submit">개인정보 수정</button>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+                <div class="button-box">
+                    <a class="button" href="{% url 'user_logout' %}"><button class="button" id="주문내역"  type="submit">로그 아웃</button></a>
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+            </tbody>
+        </table>
+    </div> 
+
+    <script>
+        $('#주문내역').click(function(){
+            // alert('click')
+        })
+    </script>
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
+
+</body>
+</html>
+
+

@@ -1,0 +1,668 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google icon -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined|" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- link -->
+    <!-- <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'reset.css' %}"> -->
+    <title>HOME</title>
+
+<body>
+<style>
+    header{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        font-size: 30px;
+        height: 100px;
+        color: white;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(98, 39, 154);
+        position:fixed;
+        z-index: 999999;
+    }
+    nav{
+        display: flex;
+        margin-top: 100px;
+        background-color: white;
+        height: 80px;
+        width: 100%;
+        justify-content:space-around;
+        align-items: center;
+        position: fixed;
+        z-index: 2;
+    }
+    .nev_cont{
+        font-size: larger;
+        text-decoration: none;
+        color: black;
+    }
+    .icon_text{
+        padding-left: 20px;
+        font-style:italic;
+    }
+    .icon_text a {
+        font-size: 50px;
+        text-decoration: none;
+        color: black;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-style: italic;
+    }
+    .button_box{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 400px;
+        background-color:rgb(177, 121, 231);
+        justify-content: center;
+        border-radius: 100px;
+    }
+    .button_box1{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        height: 50px;
+        width: 200px;
+        background-color:rgb(177, 121, 231);
+        justify-content: center;
+        border-radius: 100px;
+        color: blueviolet;
+        border:none;
+    }
+    .button_box1 div {
+        text-decoration: none;
+        color: black;
+    }
+    .button_box2{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 200px;
+        font-size: 20px;
+        background-color:white;
+        justify-content: center;
+        border-radius: 100px;
+        border: none;
+        color: blueviolet;
+    }
+    .button_box2 div {
+        text-decoration: none;
+        color: black;
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 180px;
+        background-color: white;
+        height: 1500px;
+        float: left;
+        width: 100%;
+        z-index: 1;
+    }
+    footer {
+        display: flex;
+        margin-top: 630px;
+        height: 100px;
+        background-color:aquamarine;
+        float: left;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+    }
+    footer a {
+        color: black;
+    }
+    a{
+        text-decoration:none;
+        color:inherit;
+    }
+    .box{
+        padding-top: 10px;
+        background-color: white;
+        max-width:100%; 
+        width:100%; 
+        height:100%; 
+        margin:0 auto;
+    }
+    #tab ul{
+        white-space:unset; 
+        overflow-x:hidden; 
+        text-align:center
+    }
+    #tab ul li{
+        display:inline-block; 
+        height: 400px;
+        width: 400px;
+        padding: 10px 20px; background:white; 
+        margin-right:10px;
+    }
+    .slideshow_box{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: 400px;
+        width: 100%;
+
+    }
+    .slideshow-container {
+        display: flex;
+        width: 1515px;
+        height: 400px;
+    }
+
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 25px;
+        padding: 20px 30px;
+        position: absolute;
+        top:65%;
+        left: 65%;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+    .product-container {
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        max-width:1500px;
+        height: 500px;
+        justify-content:center;
+        align-items:center;
+        margin-bottom: 50px;
+        white-space:unset; 
+        overflow-x:hidden; 
+        text-align:center
+     }
+     .product-1box{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+        width: 300px;
+        height: 500px;
+        margin: 10px 5px 0 10px;
+     }
+     .img-container{
+        position:relative;
+        display: flex;
+        flex-direction: column;
+        top: 10%;
+        width: 300px; 
+        margin: 10px 5px 0 10px;
+        width: 300px;
+        height: 350px;
+     }
+     .img{
+        width:100%; 
+        height:100%; 
+        object-fit:cover
+        
+    }
+    .price-box {
+        display: flex; 
+        width:100% ;
+        height: 30px;
+        flex-direction:column;
+        margin-top: 60px;
+     }
+    .product-price{
+        display:flex; 
+        flex-direction:column;
+     }
+    .cart-button{
+        position:absolute; 
+        left: 80%; 
+        top:85%; 
+        background-color:rgb(243, 243, 243);
+        width: 45px;
+        height: 45px;
+        border-color: blueviolet; 
+        border-radius: 30px;
+    }
+
+</style>
+<header>
+    <div class="icon_text">
+        <a href="">Kurly</a>
+    </div>
+    <div class="button_box">
+        <button class="button_box1">
+            <div>마켓컬리</div>
+        </button>
+        <button class="button_box2">
+            <div>뷰티컬리</div>
+        </button>
+    </div>
+    <div style=" cursor: pointer;">
+        <span id="adress" style="font-size: 40px;" class="material-symbols-outlined">location_on</span>
+    </div>
+    <div style="cursor: pointer;">
+        <a style="color:black" href=""><span style="font-size: 40px;color: white;" class="material-symbols-outlined">shopping_cart</span></a>
+    </div>
+</header>
+<nav>
+    <a id="nev_cont1" class="nev_cont" href="">컬리추천</a>
+    <a id="nev_cont2" class="nev_cont" href="">신상품</a>
+    <a id="nev_cont3" class="nev_cont" href="">베스트</a>
+    <a id="nev_cont4" class="nev_cont" href="">알뜰쇼핑</a>
+    <a id="nev_cont5" class="nev_cont" href="">특가/혜택</a>
+</nav>
+
+<section>
+    <div class="slideshow_box">
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/201943aa-6771-4163-aa23-6d34f006c2a9.jpg"
+                style="width:100%;height:400px">
+        </div>
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/eb91e8cc-fad1-4190-b7e8-0224ed02d6fa.jpg"
+                style="width:100%;height:400px">
+        </div>
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/813f5567-9482-4b4a-b040-f38b6deabf1b.png" style="width:100%;height:400px">
+        </div>
+    </div>
+    <div style="padding-left: 10px;font-weight: bold;padding: 20px;">
+        <h3 style="font-weight: bold;">이 상품 어때요?</h3>
+    </div>
+    <div class="box">
+        <div id="tab">
+        <div class="product-container">
+            {% for product in products %}
+            <a style="text-decoration: none; color:black" href="{% url 'product' product.id %}">
+                <div class="product-1box">
+                    <div class="img-container">
+                        <img id="{{product.id}}" class="img" src="{% get_media_prefix %}{{ product.product_image }}">
+                        <button class="cart-button" type="button">
+                            <img style="width: 100%;"
+                                src="https://as2.ftcdn.net/v2/jpg/03/36/55/77/1000_F_336557716_Wc8izQSoR68N2JgMRnwTuZ3PeDzsyVUK.jpg"
+                                alt="">
+                        </button>
+                    </div>
+                    <div class="price-box">
+                        <div class="product-name;">
+                            <h5>{{ product.name }} </h5>
+                        </div>
+                        <div class="product-price">
+                            <div style="display:flex; flex-direction:column;">
+                                {% load humanize %}
+                                {% if product.pro_seil_prace %}
+                                <div style="display: flex; flex-direction:row;">
+                                    <span style="color: red;"><b>{{product.pro_seil_percent}}%</b></span>
+                                    <span style="margin-left: 20px;"> <b>{{ product.sell_price|intcomma }} 원</b></span>
+                                </div>
+                                <span style="text-decoration: line-through;">{{product.pro_seil_prace|intcomma}} 원</span>
+                                {% else %}
+                                <span> <b>{{ product.sell_price|intcomma }} 원</b></span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}</div>
+            <!-- <li><a href="#">tab4</a></li> -->
+            <!-- <li><a href="#">tab5</a></li>
+            <li><a href="#">tab6</a></li>
+            <li><a href="#">tab6</a></li>
+            <li><a href="#">tab7</a></li>
+            <li><a href="#">tab8</a></li>
+            <li><a href="#">tab9</a></li>
+            <li><a href="#">tab10</a></li> -->
+        </div>
+      </div>
+</section>
+
+<footer>
+    <a href=""><span style="font-size: 70px;" class="material-symbols-outlined">home</span></a>
+    <a href=""><span style="font-size: 70px;" class="material-symbols-outlined">menu</span></a>
+    <a href=""><span style="font-size: 70px;" class="material-symbols-outlined">search</span></a>
+    <a href=""><span style="font-size: 70px;" class="material-symbols-outlined">person</span></a>
+</footer>
+
+
+
+<!-- scrooll nev bar -->
+<script>
+
+
+
+
+    $('.button_box1').click(function(){
+        $('.button_box2').css({
+            'background-color':'rgb(177, 121, 231)'
+        });
+        $('.button_box1').css({
+            'background-color':'white'
+        })
+    })
+
+    $('.button_box2').click(function(){
+        $('.button_box1').css({
+            'background-color':'rgb(177, 121, 231)'
+        });
+        $('.button_box2').css({
+            'background-color':'white'
+        })
+    })
+// 1
+    $('#nev_cont1').mouseover(function(){
+        $('#nev_cont1').css({
+            color:'blueviolet'
+        })
+    })
+
+    $('#nev_cont1').mouseout(function(){
+        $('#nev_cont1').css({
+            color:'black'
+        })
+    })
+    // 2
+    $('#nev_cont2').mouseover(function(){
+        $('#nev_cont2').css({
+            color:'blueviolet'
+        })
+    })
+
+    $('#nev_cont2').mouseout(function(){
+        $('#nev_cont2').css({
+            color:'black'
+        })
+    })
+    // 3
+    $('#nev_cont3').mouseover(function(){
+        $('#nev_cont3').css({
+            color:'blueviolet'
+        })
+    })
+
+    $('#nev_cont3').mouseout(function(){
+        $('#nev_cont3').css({
+            color:'black'
+        })
+    })
+    // 4
+    $('#nev_cont4').mouseover(function(){
+        $('#nev_cont4').css({
+            color:'blueviolet'
+        })
+    })
+
+    $('#nev_cont4').mouseout(function(){
+        $('#nev_cont4').css({
+            color:'black'
+        })
+    })
+    // 5
+    $('#nev_cont5').mouseover(function(){
+        $('#nev_cont5').css({
+            color:'blueviolet'
+        })
+    })
+    $('#nev_cont5').mouseout(function(){
+        $('#nev_cont5s').css({
+            color:'black'
+        })
+    })
+    
+    var slideIndex = 0;
+    showSlides();
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        // var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        // for (i = 0; i < dots.length; i++) {
+        //     dots[i].className = dots[i].className.replace(" active", "");
+        // }
+        slides[slideIndex - 1].style.display = "block";
+        // dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+
+
+    $('#adress').click(function(){
+        new daum.Postcode({
+        oncomplete: function(data) {
+            let adress = data.roadAddress;
+            alert(adress)
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+    })
+
+    $('#address').click(function(){
+        new daum.Postcode({
+        oncomplete: function(data) {
+            let adress = data.roadAddress;
+            alert(adress)
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+    })
+
+
+    document.addEventListener('scroll', function() {
+    var currentScrollValue = document.documentElement.scrollTop;
+    // console.log('currentScrollValue is ' + currentScrollValue);
+    if(currentScrollValue >= 120){
+        $('.header-box').css({
+            display:'none'
+        });
+        $('.scroll-nev-bar').css({
+            display:'block'
+        })
+    }else{
+        $('.header-box').css({
+            display:'block'
+        });
+        $('.scroll-nev-bar').css({
+            display:'none'
+        })
+    }
+    });
+
+
+    let vegetable = document.getElementById("vegetable");
+    let fruit = document.getElementById("fruit");
+    let meat = document.getElementById("meat");
+    let sellod = document.getElementById("sellod");
+    let oil_flour = document.getElementById("oil_flour");
+    let water = document.getElementById("water");
+    let snack = document.getElementById("snack");
+    let bakery = document.getElementById("bakery");
+    let health_food = document.getElementById("health_food");
+    let household = document.getElementById("household");
+    let kitchen_utensils = document.getElementById("kitchen_utensils");
+    let home_appliances = document.getElementById("home_appliances");
+    let baby_product = document.getElementById("baby_product");
+    let mouseout = document.getElementById("dropdown1");
+
+
+    vegetable.addEventListener("mouseover", function (event) {
+        $('.vegetable_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.vegetable_content').hide()
+    }, false);
+
+
+    fruit.addEventListener("mouseover", function (event) {
+        $('.fruit_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.fruit_content').hide()
+    }, false);
+
+    meat.addEventListener("mouseover", function (event) {
+        $('.meat_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.meat_content').hide()
+    }, false);
+
+    sellod.addEventListener("mouseover", function (event) {
+        $('.sellod_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.sellod_content').hide()
+    }, false);
+
+    oil_flour.addEventListener("mouseover", function (event) {
+        $('.oil_flour_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.oil_flour_content').hide()
+    }, false);
+
+    water.addEventListener("mouseover", function (event) {
+        $('.water_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.water_content').hide()
+    }, false);
+
+    snack.addEventListener("mouseover", function (event) {
+        $('.snack_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.snack_content').hide()
+    }, false);
+
+    bakery.addEventListener("mouseover", function (event) {
+        $('.bakery_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.bakery_content').hide()
+    }, false);
+
+    health_food.addEventListener("mouseover", function (event) {
+        $('.health_food_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.health_food_content').hide()
+    }, false);
+
+    household.addEventListener("mouseover", function (event) {
+        $('.household_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.household_content').hide()
+    }, false);
+
+    kitchen_utensils.addEventListener("mouseover", function (event) {
+        $('.kitchen_utensils_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.kitchen_utensils_content').hide()
+    }, false);
+
+    home_appliances.addEventListener("mouseover", function (event) {
+        $('.home_appliances_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.home_appliances_content').hide()
+    }, false);
+
+    baby_product.addEventListener("mouseover", function (event) {
+        $('.baby_product_content').show()
+        event.target.style.color = "red";
+    }, false);
+
+    mouseout.addEventListener("mouseout", function (event) {
+        event.target.style.color = "black";
+        $('.baby_product_content').hide()
+    }, false);
+
+
+</script>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
+
+</body>
+{% block content %}
+{% endblock content %}
+</html>

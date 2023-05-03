@@ -289,11 +289,11 @@
             <a href="#" style="text-decoration: none;color:gray;font-size:15px">뷰티컬러</a>
         </div>
         <div style="width: 450px;height: 50px; border-color: blueviolet;">
-            <form class="d-flex" action="{% url 'search' %}">
-                <input style="box-shadow: none;" name="q" id="search" class="form-control me-2" type="search" placeholder="Search"
+            <form class="d-flex" action="{% url 'search' %}" style="display: flex;align-items: center; ">
+                <input style="width: 450px;box-shadow: none; height: 50px;" name="q" id="search" class="form-control me-2" type="search" placeholder="Search"
                     aria-label="Search">
-                <button id="search_button" type="submit" style="border:0mm;background-color: rgb(255, 255, 255); height: 50px;position: relative;"><span
-                     style="font-size: 30px;"   class="material-symbols-outlined">search</span></button>
+                <button id="search_button" type="submit" style="border:0mm;background-color:gray; height: 50px;position: absolute;right: 450px;"><span
+                     style="font-size: 40px;color:white;" class="material-symbols-outlined">search</span></button>
             </form>
         </div>
         <div style="margin-left:100px; cursor: pointer;">
@@ -471,8 +471,8 @@
             <form class="d-flex" action="{% url 'search' %}">
                 <input style="box-shadow: none;" name="q" id="search" class="form-control me-2" type="search" placeholder="Search"
                     aria-label="Search">
-                <button id="search_button" type="submit" style="border:0mm;background-color: rgb(255, 255, 255); height: 50px;position: relative;"><span
-                     style="font-size: 30px;"   class="material-symbols-outlined">search</span></button>
+                <button id="search_button" type="submit" style="border:0mm;background-color: rgb(255, 255, 255); height: 50px;position: absolute;"><span
+                     style="font-size: 30px;color: white;"   class="material-symbols-outlined">search</span></button>
             </form>
         </div>
         <div style="margin-left:30px; cursor: pointer;">
@@ -531,7 +531,7 @@
     });
 
 
-    let vegetable = document.getElementById("vegetable");
+      let vegetable = document.getElementById("vegetable");
     let fruit = document.getElementById("fruit");
     let meat = document.getElementById("meat");
     let sellod = document.getElementById("sellod");

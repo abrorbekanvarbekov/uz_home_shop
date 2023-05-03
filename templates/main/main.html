@@ -156,7 +156,7 @@
         <a style="text-decoration: none; color:black" href="{% url 'product' product.id %}">
             <div class="product-1box">
                 <div class="img-container">
-                    <img id="{{product.id}}" class="img" src="{% get_media_prefix %}{{ product.product_image }}">
+                    <img id="{{product.id}}" class="img" src="{% get_media_prefix %}{{ product.product_image }}" alt="상품 이미지">
                     <button class="cart-button" type="button">
                         <img style="width: 100%;"
                             src="https://as2.ftcdn.net/v2/jpg/03/36/55/77/1000_F_336557716_Wc8izQSoR68N2JgMRnwTuZ3PeDzsyVUK.jpg"
@@ -189,11 +189,11 @@
 </div>
 <!-- 판매 물건 끝 -->
 <script>
-    var slideIndex = 0;
+    let slideIndex = 0;
     showSlides();
     function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
+        let i;
+         slides = document.getElementsByClassName("mySlides");
         // var dots = document.getElementsByClassName("dot");
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";

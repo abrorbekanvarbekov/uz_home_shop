@@ -41,7 +41,7 @@ class Product_add(APIView):
             for chunk in file.chunks():
                 destination.write(chunk)
 
-        product_image = uuid_name
+        product_iagem = uuid_name
         Product.objects.create(
             email=email,
             product_image=product_image,

@@ -10,10 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 from django.contrib import messages
-from secret_key import SEKRET_KEY
+
+import secret_key
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--+p#$*u6dlkhsow9k)tq(!ebap^hkysce9ac9%2&_d#x28j_ax'
+SECRET_KEY = secret_key.SEKRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -148,7 +151,6 @@ MEDIA_URL = '/media/' # 항상 / 로 끝나도록 설정
 # 업로드된 파일을 저장할 디렉토리 경로
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR),"static", "static_dirs"),
-    os.path.join(os.path.dirname(BASE_DIR),"static", "media"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(os.path.dirname(BASE_DIR), "media"),
+# ]

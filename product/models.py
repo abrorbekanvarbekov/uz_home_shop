@@ -20,6 +20,7 @@ class Product(models.Model):
 
     created_time = models.DateTimeField(blank=True, null=True,auto_now_add=timezone.now())
     is_soldout = models.IntegerField(default=0, blank=True,null=True, help_text=u"재고 없음")
+
     class Meta:
         db_table="Product"
 

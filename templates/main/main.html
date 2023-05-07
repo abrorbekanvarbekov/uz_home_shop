@@ -156,7 +156,7 @@
         <a style="text-decoration: none; color:black" href="{% url 'product' product.id %}">
             <div class="product-1box">
                 <div class="img-container">
-                    <img id="{{product.id}}" class="img" src="{% get_media_prefix %}{{ product.product_image }}" alt="상품 이미지">
+                    <img id="{{product.id}}" class="img" src="{{ product.product_image }}" alt="상품 이미지">
                     <button class="cart-button" type="button">
                         <img style="width: 100%;"
                             src="https://as2.ftcdn.net/v2/jpg/03/36/55/77/1000_F_336557716_Wc8izQSoR68N2JgMRnwTuZ3PeDzsyVUK.jpg"
